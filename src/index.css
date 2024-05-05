@@ -7,4 +7,9 @@ body {
     font-family: 'IranYekan';
     text-decoration: none;
     list-style: none;
+    box-sizing: border-box;
+}
+
+.todoItem p {
+    font-size: 13px;
 }
