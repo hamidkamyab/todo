@@ -1,6 +1,7 @@
 body {
     margin: 0;
     direction: rtl;
+    background: linear-gradient(100deg, #6D214F 0%, #3B3B98 100%);
 }
 
 * {
@@ -10,6 +11,42 @@ body {
     box-sizing: border-box;
 }
 
+.todoItem {
+    background-color: #fff;
+}
+
 .todoItem p {
     font-size: 13px;
+}
+
+.todoItem[data-done="true"] {
+    background-color: #00a8ff;
+    color: #fff;
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+}
+
+.todoForm input {
+    outline: none;
+    font-size: 13px;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #dcdde1;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+}
+
+.todoForm input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #00a8ff;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
 }
