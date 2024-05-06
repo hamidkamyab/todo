@@ -9,7 +9,13 @@ function TodoItem({todo,del,done}) {
             </p>
             <div className='opratIcon d-flex align-items-center gap-3'>
                 <button className='btn btn-sm btn-success p-0 pb-1 px-2' onClick={()=>done(todo.id)}>
-                    <FA6.FaCheck size={14} />
+                    {
+                        todo.done ?
+                        <FA6.FaArrowRotateRight size={14} />
+                        :
+                        <FA6.FaCheck size={14} />
+                    }
+
                 </button>
                 <button className='btn btn-sm btn-danger p-0 pb-1 px-2' onClick={()=>del(todo.id)}>
                     <FA6.FaTrashCan size={14} />

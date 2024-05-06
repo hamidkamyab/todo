@@ -20,7 +20,10 @@ body {
 }
 
 .todoItem[data-done="true"] {
-    background-color: #00a8ff;
+    background-color: #7f8fa6;
+}
+
+.todoItem[data-done="true"] p {
     color: #fff;
     text-decoration-line: line-through;
     text-decoration-color: red;
@@ -49,4 +52,16 @@ body {
     -o-transition: 0.3s;
     -moz-transition: 0.3s;
     -ms-transition: 0.3s;
+}
+
+.todoForm input.isError {
+    border-color: #eb4d4b
+}
+
+.todos>p {
+    font-size: 14px;
+}
+
+.errorMsg {
+    font-size: 11px;
 }

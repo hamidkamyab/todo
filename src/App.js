@@ -6,12 +6,19 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 function App() {
+  const [error, setError] = useState(false);
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState([]);
 
   const addTodo = (e) => {
     e.preventDefault();
+    if(todo.length < 5){
+      setError('برای ایجاد کار جدید باید حداقل 5 کارکتر وارد کنید');
+      return;
+    }
     setTodos([...todos, { id: Date.now(), title: todo, done: false }])
+    setTodo('');
+    setError(false)
   }
 
   const handelDel = (id) => {
@@ -20,7 +27,7 @@ function App() {
       text: "شما در حال حذف یکی از کارها هستید!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#0652DD",
       cancelButtonColor: "#d33",
       confirmButtonText: "بله، مطمئنم!"
     }).then((result) => {
@@ -49,7 +56,7 @@ function App() {
   return (
     <Layout>
       <Header />
-      <Form todo={todo} handleTodo={(val) => setTodo(val)} addTodo={addTodo} />
+      <Form todo={todo} handleTodo={(val) => setTodo(val)} addTodo={addTodo} error={error} />
       <TodoList todos={todos} handelDel={handelDel} handelDone={handelDone} />
     </Layout>
   );
