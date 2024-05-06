@@ -2,17 +2,26 @@ import Layout from "./components/Layout";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import Form from "./components/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+
+const getTodosList = ()=>{
+    const TodosList = JSON.parse(localStorage.getItem('todos'));
+    if(TodosList){
+      return TodosList;
+    }else{
+      return []
+    }
+}
 
 function App() {
   const [error, setError] = useState(false);
   const [todo, setTodo] = useState('');
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getTodosList);
 
   const addTodo = (e) => {
     e.preventDefault();
-    if(todo.length < 5){
+    if(todo.trim().length < 5){
       setError('برای ایجاد کار جدید باید حداقل 5 کارکتر وارد کنید');
       return;
     }
@@ -29,7 +38,8 @@ function App() {
       showCancelButton: true,
       confirmButtonColor: "#0652DD",
       cancelButtonColor: "#d33",
-      confirmButtonText: "بله، مطمئنم!"
+      confirmButtonText: "بله، مطمئنم!",
+      cancelButtonText:"انصراف"
     }).then((result) => {
       if (result.isConfirmed) {
         const updateTodos = todos.filter((todo) => todo.id !== id);
@@ -52,6 +62,10 @@ function App() {
     });
     setTodos(updateTodos)
   }
+
+  useEffect(() => {
+    localStorage.setItem('todos',JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <Layout>
